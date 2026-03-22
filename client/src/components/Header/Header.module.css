@@ -1,0 +1,38 @@
+.header {
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem 3rem;
+  background-color: #f8f9faee;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.logo a {
+  font-size: 1.5rem;
+  font-weight: 780;
+  color: #202020;
+  text-decoration: none;
+  margin-right: 6rem;
+}
+
+.nav {
+  display: flex;
+  gap: 6rem;
+}
+
+.nav a {
+  color: #202020;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 780;
+  transition: color 0.2s;
+}
+
+.nav a:hover {
+  color: #ff7e5e;
+}
+
+.nav a.active {
+  color: #ff7e5e;
+}
