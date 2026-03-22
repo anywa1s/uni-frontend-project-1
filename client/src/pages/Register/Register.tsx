@@ -23,7 +23,7 @@ const Register: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <h2 className={styles.title}>Регистрация</h2>
+        <h2 className={styles.title}>РЕГИСТРАЦИЯ</h2>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputGroup}>
             <label htmlFor="name">Имя</label>
@@ -56,7 +56,7 @@ const Register: React.FC = () => {
             />
           </div>
           <div className={styles.inputGroup}>
-            <label htmlFor="confirmPassword">Подтвердите пароль</label>
+            <label htmlFor="confirmPassword">Пароль ещё разок</label>
             <input
               type="password"
               id="confirmPassword"
@@ -66,7 +66,7 @@ const Register: React.FC = () => {
             />
           </div>
           {error && <div className={styles.error}>{error}</div>}
-          <button type="submit" className={styles.button}>Зарегистрироваться</button>
+          <button type="submit" className={styles.button}>ЗАРЕГИСТРИРОВАТЬСЯ</button>
         </form>
         <p className={styles.loginLink}>
           Уже есть аккаунт? <Link to="/login">Войти</Link>

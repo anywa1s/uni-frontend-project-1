@@ -8,14 +8,13 @@ const Login: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Здесь будет вызов API для авторизации
     console.log('Login:', { email, password });
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <h2 className={styles.title}>Вход</h2>
+        <h2 className={styles.title}>ВХОД</h2>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputGroup}>
             <label htmlFor="email">Email</label>
@@ -37,7 +36,7 @@ const Login: React.FC = () => {
               required
             />
           </div>
-          <button type="submit" className={styles.button}>Войти</button>
+          <button type="submit" className={styles.button}>ВОЙТИ</button>
         </form>
         <p className={styles.registerLink}>
           Нет аккаунта? <Link to="/register">Зарегистрироваться</Link>

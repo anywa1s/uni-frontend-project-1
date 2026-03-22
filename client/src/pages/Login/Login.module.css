@@ -1,10 +1,11 @@
 .container {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2rem;
   box-sizing: border-box;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #dd7e5e;
 }
 
 .card {
@@ -50,23 +51,23 @@
 
 .inputGroup input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #dd7e5e;
 }
 
 .button {
-  background: #667eea;
+  background: #ff7e5e;
   color: white;
   border: none;
   padding: 0.75rem;
   border-radius: 5px;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.05rem;
+  font-weight: 780;
   cursor: pointer;
   transition: background 0.2s;
 }
 
 .button:hover {
-  background: #5a67d8;
+  background: #dd7e5e;
 }
 
 .registerLink {
@@ -76,9 +77,9 @@
 }
 
 .registerLink a {
-  color: #667eea;
+  color: #ff7e5e;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 780;
 }
 
 .registerLink a:hover {
