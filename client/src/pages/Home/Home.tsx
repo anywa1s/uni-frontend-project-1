@@ -67,6 +67,7 @@ const Home: React.FC = () => {
             />
           ))}
         </div>
+        <h2 className={styles.subtitle}>ТАМ ПОТОМ БУДЕТ <span className='accent'>ЕЩЁ</span> КОЛЛЕКЦИЯ</h2>
       </div>
     </>
   );
