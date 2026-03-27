@@ -10,7 +10,7 @@ const About: React.FC = () => {
         {/* <div className={styles.form}></div> */}
         <div className={styles.oval1}></div>
         <div className={styles.oval2}></div>
-        <h1 className={styles.title}>{`С ВАШЕГО ПОЗВОЛЕНИЯ, \n`} <span className="accent">ПРЕДСТАВИМСЯ</span></h1>
+        <h1 className={styles.title}>{`с Вашего позволения, \n`} <span className="accent">представимся</span></h1>
       </div>
 
       <div className={styles.content}>

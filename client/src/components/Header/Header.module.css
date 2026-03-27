@@ -5,13 +5,13 @@
   align-items: center;
   padding: 1.25rem 3rem;
   background-color: #f8f9faee;
-  border-bottom: 1px solid #ff7e5e;
+  border-bottom: 1px solid var(--accent);
 }
 
 .logo a {
   font-size: 1.5rem;
   font-weight: 780;
-  color: #202020;
+  color: var(--text-dark);
   text-decoration: none;
   margin-right: 6rem;
 }
@@ -22,7 +22,7 @@
 }
 
 .nav a {
-  color: #202020;
+  color: var(--text-dark);
   text-decoration: none;
   font-size: 1.3rem;
   font-weight: 780;
@@ -30,9 +30,9 @@
 }
 
 .nav a:hover {
-  color: #ff7e5e;
+  color: var(--accent);
 }
 
 .nav a.active {
-  color: #ff7e5e;
+  color: var(--accent);
 }

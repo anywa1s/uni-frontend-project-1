@@ -1,9 +1,18 @@
+:root {
+  --accent: #ff7e5e;
+  --accent-dark: #e65c3a;
+  --accent-light: #ffa07a;
+  --text-dark: #222;
+  --text-light: #666;
+  --bg-light: #f9f9f9;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
-  color: #202020;
+  color: var(--text-dark);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -30,5 +39,5 @@ html, body {
 }
 
 .accent {
-  color: #ff7e5e;
+  color: var(--accent);
 }

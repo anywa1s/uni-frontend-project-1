@@ -5,7 +5,7 @@
   align-items: center;
   padding: 2rem;
   box-sizing: border-box;
-  background: #dd7e5e;
+  background: var(--accent-dark);
 }
 
 .card {
@@ -20,7 +20,7 @@
 .title {
   text-align: center;
   margin-bottom: 2rem;
-  color: #333;
+  color: var(--text-dark);
   font-size: 2rem;
 }
 
@@ -38,7 +38,7 @@
 
 .inputGroup label {
   font-weight: 500;
-  color: #555;
+  color: var(--text-light);
 }
 
 .inputGroup input {
@@ -51,11 +51,11 @@
 
 .inputGroup input:focus {
   outline: none;
-  border-color: #dd7e5e;
+  border-color: var(--accent);
 }
 
 .button {
-  background: #ff7e5e;
+  background: var(--accent);
   color: white;
   border: none;
   padding: 0.75rem;
@@ -67,17 +67,17 @@
 }
 
 .button:hover {
-  background: #dd7e5e;
+  background: var(--accent-dark);
 }
 
 .registerLink {
   text-align: center;
   margin-top: 1.5rem;
-  color: #666;
+  color: var(--text-light);
 }
 
 .registerLink a {
-  color: #ff7e5e;
+  color: var(--accent);
   text-decoration: none;
   font-weight: 780;
 }
