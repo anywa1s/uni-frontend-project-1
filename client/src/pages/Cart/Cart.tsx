@@ -1,12 +1,12 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { RootState } from '../../store/store';
 import { updateQuantity, removeFromCart } from '../../store/slices/cartSlice';
 import styles from './Cart.module.css';
 
 const Cart: React.FC = () => {
-  const cartItems = useSelector((state: RootState) => state.cart.items);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const cartItems = useAppSelector(state => state.cart.items);
 
   const totalSum = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
