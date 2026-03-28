@@ -7,6 +7,7 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import About from './pages/About/About';
 import Cart from './pages/Cart/Cart';
+import Help from './pages/Help/Help';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/about" element={<About />} />
+          <Route path="/help" element={<Help />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </main>
