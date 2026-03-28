@@ -25,7 +25,7 @@ const Cart: React.FC = () => {
   if (cartItems.length === 0) {
     return (
       <div className={styles.container}>
-        <h1 className={styles.title}>Корзина</h1>
+        {/* <h1 className={styles.title}>КОРЗИНА</h1> */}
         <p className={styles.empty}>Ваша корзина пуста</p>
       </div>
     );
@@ -33,7 +33,8 @@ const Cart: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Корзина</h1>
+      {/* <h1 className={styles.title}>КОРЗИНА</h1> */}
+      <div className={styles.cartLayout}>
       <div className={styles.items}>
         {cartItems.map(item => (
           <div key={item.id} className={styles.item}>
@@ -75,6 +76,7 @@ const Cart: React.FC = () => {
         <button className={styles.checkoutBtn} onClick={handleCheckout}>
           Оформить заказ
         </button>
+      </div>
       </div>
     </div>
   );

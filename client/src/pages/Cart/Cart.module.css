@@ -7,21 +7,36 @@
 .title {
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: #333;
+  color: var(--text-dark);
 }
 
 .empty {
   text-align: center;
   font-size: 1.2rem;
-  color: #666;
+  color: var(--text-light);
   margin-top: 4rem;
 }
 
+.cartLayout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
 .items {
+  flex: 2;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-bottom: 2rem;
+}
+
+.summary {
+  flex: 1; 
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 1rem;
 }
 
 .item {
@@ -29,7 +44,6 @@
   grid-template-columns: auto 1fr auto auto auto;
   align-items: center;
   gap: 1rem;
-  background: white;
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -53,7 +67,7 @@
 
 .itemPrice {
   margin: 0;
-  color: #666;
+  color: var(--text-light);
   font-size: 0.9rem;
 }
 
@@ -92,32 +106,21 @@
 .removeBtn {
   background: none;
   border: none;
-  color: #ff7e5e;
+  color: var(--accent);
   cursor: pointer;
   font-size: 0.9rem;
   transition: color 0.2s;
 }
 
 .removeBtn:hover {
-  color: #e65c3a;
-  text-decoration: underline;
-}
-
-.summary {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+  color: var(--accent-dark);
+  /* text-decoration: underline; */
 }
 
 .total {
   font-size: 1.2rem;
   font-weight: bold;
+  margin-bottom: 1rem;
 }
 
 .total span:first-child {
@@ -125,7 +128,7 @@
 }
 
 .checkoutBtn {
-  background: #ff7e5e;
+  background: var(--accent);
   color: white;
   border: none;
   padding: 0.75rem 2rem;
@@ -133,46 +136,10 @@
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.2s, transform 0.1s;
+  width: 100%;
 }
 
 .checkoutBtn:hover {
-  background: #e65c3a;
+  background: var(--accent-dark);
   transform: translateY(-2px);
-}
-
-@media (max-width: 768px) {
-  .item {
-    grid-template-columns: auto 1fr;
-    grid-template-areas:
-      "image details"
-      "quantity total"
-      "remove remove";
-    gap: 0.8rem;
-  }
-  .image {
-    grid-area: image;
-  }
-  .details {
-    grid-area: details;
-  }
-  .quantity {
-    grid-area: quantity;
-    justify-self: start;
-  }
-  .itemTotal {
-    grid-area: total;
-    justify-self: end;
-  }
-  .removeBtn {
-    grid-area: remove;
-    justify-self: start;
-  }
-  .summary {
-    flex-direction: column;
-    align-items: stretch;
-    text-align: center;
-  }
-  .checkoutBtn {
-    width: 100%;
-  }
 }
