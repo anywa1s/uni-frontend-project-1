@@ -83,5 +83,5 @@
 }
 
 .registerLink a:hover {
-  text-decoration: underline;
+  color: var(--accent-dark);
 }

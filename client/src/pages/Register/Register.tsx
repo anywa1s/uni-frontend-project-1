@@ -1,29 +1,35 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { registerUser } from '../../store/slices/authSlice';
 import styles from './Register.module.css';
 
 const Register: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { isLoading, error } = useAppSelector((state) => state.auth);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      setError('Пароли не совпадают');
-      return;
+    
+    const result = await dispatch(registerUser({ name, email, password }));
+    
+    if (registerUser.fulfilled.match(result)) {
+      navigate('/'); // После регистрации сразу на главную
     }
-    setError('');
-    // Здесь будет вызов API для регистрации
-    console.log('Register:', { name, email, password });
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.card}>
         <h2 className={styles.title}>РЕГИСТРАЦИЯ</h2>
+        
+        {error && <p className={styles.errorMessage}>{error}</p>}
+        
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputGroup}>
             <label htmlFor="name">Имя</label>
@@ -33,6 +39,7 @@ const Register: React.FC = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
+              disabled={isLoading}
             />
           </div>
           <div className={styles.inputGroup}>
@@ -43,6 +50,7 @@ const Register: React.FC = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={isLoading}
             />
           </div>
           <div className={styles.inputGroup}>
@@ -53,21 +61,15 @@ const Register: React.FC = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              disabled={isLoading}
             />
           </div>
-          <div className={styles.inputGroup}>
-            <label htmlFor="confirmPassword">Пароль ещё разок</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-          </div>
-          {error && <div className={styles.error}>{error}</div>}
-          <button type="submit" className={styles.button}>ЗАРЕГИСТРИРОВАТЬСЯ</button>
+          
+          <button type="submit" className={styles.button} disabled={isLoading}>
+            {isLoading ? 'СОЗДАНИЕ...' : 'СОЗДАТЬ АККАУНТ'}
+          </button>
         </form>
+        
         <p className={styles.loginLink}>
           Уже есть аккаунт? <Link to="/login">Войти</Link>
         </p>
