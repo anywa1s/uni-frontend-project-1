@@ -7,7 +7,6 @@ const About: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.hero}>
-        {/* <div className={styles.form}></div> */}
         <div className={styles.oval1}></div>
         <div className={styles.oval2}></div>
         <h1 className={styles.title}>{`с Вашего позволения, \n`} <span className="accent">представимся</span></h1>
@@ -46,7 +45,7 @@ const About: React.FC = () => {
             </p>
           </div>
           <div className={styles.imageBlock}>
-            <img src="https://via.placeholder.com/500x300" alt="Поддержка" className={styles.image} />
+            <img alt="Поддержка" className={styles.image} />
           </div>
         </div>
 

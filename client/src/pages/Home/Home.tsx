@@ -21,9 +21,6 @@ const Home: React.FC = () => {
         <div className={styles.card}>
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>привет!</h1>
-            {/* <p className={styles.heroSubtitle}>
-              У нас для тебя кое-что есть...
-            </p> */}
           </div>
         </div>
       </section>

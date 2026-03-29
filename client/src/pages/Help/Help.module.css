@@ -14,7 +14,6 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  width: 100%;
   text-align: left;
   background: none;
   border: none;
@@ -48,5 +47,5 @@
   padding-left: 1.75rem;
   margin-bottom: 1rem;
   line-height: 1.5;
-  color: #555;
+  color: var(--text-light);
 }
