@@ -3,6 +3,7 @@ import { products } from '../../data/products';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { ReactComponent as FilterIcon } from '../../assets/icons/filter_icon.svg';
 import styles from './Catalog.module.css';
+import '../../ui/checkbox.css';
 
 const Catalog: React.FC = () => {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
@@ -47,17 +48,25 @@ const Catalog: React.FC = () => {
           <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
             <h2>Фильтры</h2>
             <div className={styles.filterGroup}>
-              <label>
-                <input type="checkbox" /> Обувь
+              <label className="checkbox-container">
+                <input type="checkbox" className="custom-checkbox" />
+                <span className="checkmark"></span>
+                Обувь
               </label>
-              <label>
-                <input type="checkbox" /> Одежда
+              <label className="checkbox-container">
+                <input type="checkbox" className="custom-checkbox" />
+                <span className="checkmark"></span>
+                Одежда
               </label>
-              <label>
-                <input type="checkbox" /> Аксессуары
+              <label className="checkbox-container">
+                <input type="checkbox" className="custom-checkbox" />
+                <span className="checkmark"></span>
+                Аксессуары
               </label>
-              <label>
-                <input type="checkbox" /> Спорт
+              <label className="checkbox-container">
+                <input type="checkbox" className="custom-checkbox" />
+                <span className="checkmark"></span>
+                Спорт
               </label>
             </div>
             <button className={styles.applyButton} onClick={closeFilterModal}>

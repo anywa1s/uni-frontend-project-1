@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './About.module.css';
 import teamImg from '../../assets/about_team.jpg';
 import productsImg from '../../assets/about_products.jpg';
+import helpImg from '../../assets/about_help.jpg';
 
 const About: React.FC = () => {
   return (
@@ -16,23 +17,23 @@ const About: React.FC = () => {
         <div className={styles.block}>
           <div className={styles.textBlock}>
             <p className={styles.paragraph}>
-              Наш проект появился в 2026 году. Мы — команда энтузиастов, объединённых любовью к качественным и стильным вещам.
-              С самого начала мы ставили перед собой цель — создавать магазин, в котором приятно и безопасно покупать.
+              Наш проект появился в 2026 году. Мы — команда энтузиастов, объединённых любовью к <span className='accent'>качественным</span> и <span className='accent'>стильным</span> вещам.
+              С самого начала мы ставили перед собой цель — создавать магазин, в котором <span className='accent'>приятно</span> и <span className='accent'>безопасно</span> покупать.
             </p>
           </div>
           <div className={styles.imageBlock}>
-            <img src={teamImg} alt="Наша команда" className={styles.image} />
+            <img src={teamImg} className={styles.image} />
           </div>
         </div>
 
         <div className={styles.block}>
           <div className={styles.imageBlock}>
-            <img src={productsImg} alt="Мы используем сами" className={styles.image} />
+            <img src={productsImg} className={styles.image} />
           </div>
           <div className={styles.textBlock}>
             <p className={styles.paragraph}>
-              Мы продаём только те товары, которые используем сами. Каждый продукт проходит тщательный отбор,
-              чтобы вы получали лучшее. Мы не боимся нести ответственность за качество — потому что доверяем своему выбору.
+              Мы продаём только те товары, которые <span className='accent'>используем сами</span>. Каждый продукт проходит тщательный отбор,
+              чтобы вы получали лучшее. Мы не боимся нести ответственность за <span className='accent'>качество</span> — потому что <span className='accent'>доверяем своему выбору</span>.
             </p>
           </div>
         </div>
@@ -40,12 +41,12 @@ const About: React.FC = () => {
         <div className={styles.block}>
           <div className={styles.textBlock}>
             <p className={styles.paragraph}>
-              Круглосуточная поддержка, быстрая доставка и забота о каждом клиенте — наши главные принципы.
+              Круглосуточная поддержка, быстрая доставка и <span className='accent'>забота о каждом клиенте</span> — наши главные принципы.
               Мы всегда на связи, чтобы помочь с выбором, ответить на вопросы и сделать ваш шопинг приятным.
             </p>
           </div>
           <div className={styles.imageBlock}>
-            <img alt="Поддержка" className={styles.image} />
+            <img src={helpImg} className={styles.image} />
           </div>
         </div>
 
