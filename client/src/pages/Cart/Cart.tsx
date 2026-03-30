@@ -19,7 +19,6 @@ const Cart: React.FC = () => {
   };
 
   const handleCheckout = () => {
-    alert('Переход к оформлению (заглушка)');
   };
 
   if (cartItems.length === 0) {

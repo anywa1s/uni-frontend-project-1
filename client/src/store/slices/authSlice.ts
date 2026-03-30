@@ -6,6 +6,7 @@ interface AuthState {
   user: User | null;
   token: string | null;
   isLoading: boolean;
+  isInitialized: boolean;
   error: string | null;
 }
 
@@ -13,6 +14,7 @@ const initialState: AuthState = {
   user: null,
   token: localStorage.getItem('token'),
   isLoading: false,
+  isInitialized: false,
   error: null,
 };
 
@@ -42,6 +44,19 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+export const checkAuth = createAsyncThunk(
+  'auth/check',
+  async (_, { rejectWithValue }) => {
+    try {
+      const user = await AuthService.getMe();
+      return user; 
+    } catch (err: any) {
+      localStorage.removeItem('token');
+      return rejectWithValue('Сессия истекла');
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -51,24 +66,27 @@ const authSlice = createSlice({
       state.token = null;
       localStorage.removeItem('token');
     },
+    setInitialized: (state) => {
+      state.isInitialized = true;
+    },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(loginUser.pending, (state) => {
+      .addCase(checkAuth.pending, (state) => {
         state.isLoading = true;
-        state.error = null;
       })
-      .addCase(loginUser.fulfilled, (state, action) => {
+      .addCase(checkAuth.fulfilled, (state, action) => {
+        state.user = action.payload;
         state.isLoading = false;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.isInitialized = true; // Проверка завершена успешно
       })
-      .addCase(loginUser.rejected, (state, action) => {
+      .addCase(checkAuth.rejected, (state) => {
+        state.user = null;
         state.isLoading = false;
-        state.error = action.payload as string;
+        state.isInitialized = true; // Проверка завершена (даже если токен плохой)
       });
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, setInitialized } = authSlice.actions;
 export default authSlice.reducer;

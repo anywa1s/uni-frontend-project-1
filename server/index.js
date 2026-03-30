@@ -44,6 +44,25 @@ app.post('/api/auth/login', (req, res) => {
   });
 });
 
+app.get('/api/auth/me', (req, res) => {
+  const authHeader = req.headers.authorization;
+  
+  if (!authHeader) {
+    return res.status(401).json({ message: 'Не авторизован' });
+  }
+
+  const token = authHeader.split(' ')[1];
+  const userId = token.split('-').pop(); 
+
+  const user = users.find(u => u.id == userId);
+
+  if (!user) {
+    return res.status(401).json({ message: 'Пользователь не найден' });
+  }
+
+  res.json({ id: user.id, email: user.email, name: user.name });
+});
+
 app.listen(PORT, () => {
   console.log(`Сервер запущен на http://localhost:${PORT}`);
 });

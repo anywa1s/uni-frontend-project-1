@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useAppDispatch, useAppSelector} from './store/hooks';
+import { checkAuth, setInitialized } from './store/slices/authSlice';
 import { Header } from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
@@ -11,7 +13,23 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Profile from './pages/Profile/Profile';
 
-function App() {
+const App: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const { isInitialized } = useAppSelector((state) => state.auth);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      dispatch(checkAuth());
+    } else {
+      dispatch(setInitialized()); 
+    }
+  }, [dispatch]);
+
+  if (!isInitialized && localStorage.getItem('token')) {
+    return <div>Загрузка приложения...</div>; 
+  }
+
   return (
     <BrowserRouter>
       <Header />
