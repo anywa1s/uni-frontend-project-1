@@ -34,7 +34,7 @@ export const Header: React.FC = () => {
           КОРЗИНА
         </NavLink>
         <NavLink 
-          to="/login" 
+          to="/profile" 
           className={({ isActive }) => isActive ? styles.active : ''}
         >
           ПРОФИЛЬ

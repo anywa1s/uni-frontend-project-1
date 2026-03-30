@@ -19,7 +19,7 @@ const Register: React.FC = () => {
     const result = await dispatch(registerUser({ name, email, password }));
     
     if (registerUser.fulfilled.match(result)) {
-      navigate('/'); // После регистрации сразу на главную
+      navigate('/profile');
     }
   };
 

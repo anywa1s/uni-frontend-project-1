@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  height: calc(100vh - 70px);
+  text-align: center;
+}
+
+.title {
+  font-size: 3rem;
+  color: var(--text-dark);
+  font-weight: 780;
+}

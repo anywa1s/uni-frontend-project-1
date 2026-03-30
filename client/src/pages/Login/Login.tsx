@@ -19,7 +19,7 @@ const Login: React.FC = () => {
     const result = await dispatch(loginUser({ email, password }));
     
     if (loginUser.fulfilled.match(result)) {
-      navigate('/');
+      navigate('/profile');
     }
   };
 
