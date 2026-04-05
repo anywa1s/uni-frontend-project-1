@@ -6,12 +6,10 @@ import styles from './Profile.module.css';
 const Profile: React.FC = () => {
   const { user, isInitialized } = useAppSelector((state) => state.auth);
 
-  // Ждем, пока проверка закончится
   if (!isInitialized) {
     return <div>Загрузка профиля...</div>;
   }
-
-  // Только когда мы ТОЧНО проверили и юзера нет — тогда просим войти
+  
   if (!user) {
     return (
       <div className={styles.container}>

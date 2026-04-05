@@ -27,7 +27,7 @@ const App: React.FC = () => {
   }, [dispatch]);
 
   if (!isInitialized && localStorage.getItem('token')) {
-    return <div>Загрузка приложения...</div>; 
+    return <div>Загрузка...</div>; 
   }
 
   return (
