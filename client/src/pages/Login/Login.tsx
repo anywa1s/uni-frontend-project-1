@@ -11,7 +11,7 @@ const Login: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   
-  const { isLoading, error } = useAppSelector((state) => state.auth);
+  const isLoading = useAppSelector((state) => state.settings.isLoading);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,9 +27,7 @@ const Login: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.card}>
         <h2 className={styles.title}>ВХОД</h2>
-        
-        {error && <p className={styles.errorMessage}>{error}</p>}
-        
+              
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputGroup}>
             <label htmlFor="email">Email</label>
