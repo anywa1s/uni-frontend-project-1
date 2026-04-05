@@ -13,6 +13,7 @@ import Cart from './pages/Cart/Cart';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Profile from './pages/Profile/Profile';
+import NotFound from './pages/NotFound/NotFound';
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -45,6 +46,7 @@ const App: React.FC = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
