@@ -1,14 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { RootState } from '../../store/store';
 import { updateQuantity, removeFromCart } from '../../store/slices/cartSlice';
 import styles from './Cart.module.css';
+import { selectCartTotal } from '../../store/selectors/cartSelector';
 
 const Cart: React.FC = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector(state => state.cart.items);
 
-  const totalSum = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalSum = useAppSelector(selectCartTotal);
 
   const handleQuantityChange = (id: number, newQuantity: number) => {
     dispatch(updateQuantity({ id, quantity: newQuantity }));
@@ -72,7 +75,7 @@ const Cart: React.FC = () => {
           <span>Итого:</span>
           <span>{totalSum} ₽</span>
         </div>
-        <button className={styles.checkoutBtn} onClick={handleCheckout}>
+        <button className={styles.checkoutBtn} onClick={handleCheckout => navigate('/order')}>
           Оформить заказ
         </button>
       </div>
