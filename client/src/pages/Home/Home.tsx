@@ -1,12 +1,14 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ProductCard from '../../components/ProductCard/ProductCard';
-import styles from './Home.module.css';
-import { useDispatch } from 'react-redux';
 import { addToCart } from '../../store/slices/cartSlice';
-import { products } from '../../data/products';
+import { RootState } from '../../store/store';
+import styles from './Home.module.css';
+import bgStyles from '../../ui/bgpattern.module.css';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
+  const products = useSelector((state: RootState) => state.product.items);
 
   const handleAddToCart = (productId: number) => {
     const product = products.find(p => p.id === productId);
@@ -17,7 +19,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <section className={styles.hero}>
+      <section className={`${bgStyles.bgpattern} ${bgStyles.bgpatternA}`}>
         <div className={styles.card}>
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>привет!</h1>

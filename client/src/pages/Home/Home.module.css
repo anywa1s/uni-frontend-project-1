@@ -1,4 +1,4 @@
-.hero {
+/* .hero {
   position: relative;
   height: calc(100vh - 70px);
   display: flex;
@@ -7,9 +7,7 @@
   text-align: center;
   padding: 0 1rem;
   margin-bottom: 3rem;
-
-  background: var(--pattern);
-}
+} */
 
 .card {
   background: white;

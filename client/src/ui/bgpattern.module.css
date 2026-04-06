@@ -1,0 +1,36 @@
+.bgpattern {
+  background:
+    conic-gradient(from -296deg at 100% 59%, #ff7e5e 0 133deg, transparent 0 100%) 50%/198px 168px,
+    conic-gradient(from -296deg at 85% 67%, #e65c3a 0 134.5deg, transparent 0 100%) 50%/198px 168px,
+    conic-gradient(from -296deg at 68% 77%, #ff7e5e 0 137deg, transparent 0 100%) 50%/198px 168px,
+    conic-gradient(from -296deg at 55% 85%, #e65c3a 0 150deg, transparent 0 100%) 50%/198px 168px,
+    conic-gradient(from -248deg at 38% 77%, #ff7e5e 0 97deg, transparent 0 100%) 50%/198px 168px,
+    conic-gradient(from -248deg at 15% 66%, #e65c3a 0 95deg, transparent 0 100%) 50%/198px 168px,
+    conic-gradient(from 207deg at 15% 66%, #ff7e5e 0 84deg, #ffa07a 0 138deg, transparent 0 100%) 50%/198px 168px,
+    conic-gradient(from 23deg at 85% 12%, #ff7e5e 0 34deg, #ffa07a 0 136deg, transparent 0 100%) 50%/198px 168px,
+    conic-gradient(from 22deg at 66% 27%, #e65c3a 0 34deg, #ff7e5e 0 128deg, transparent 0 100%) 50%/198px 168px,
+    conic-gradient(from 17deg at 50% 40%, #ff7e5e 0 39deg, #ffa07a 0 133deg, transparent 0 100%) 50%/198px 168px,
+    conic-gradient(from 31deg at 33% 26%, #e65c3a 0 94deg, #ff7e5e 0 125deg, transparent 0 100%) 50%/198px 168px,
+    conic-gradient(from -57deg at 19% 15%, #e65c3a 0 90deg, #ff7e5e 0 181deg, #ffa07a 0 217deg, #ff7e5e 0 360deg, transparent 0 100%) 50%/198px 168px;
+}
+
+.bgpatternA {
+  position: relative;
+  height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1rem;
+  margin-bottom: 3rem;
+  overflow: hidden;
+}
+
+.bgpatternB {
+  height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}

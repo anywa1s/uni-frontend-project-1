@@ -2,17 +2,6 @@
   height: 100%;
 }
 
-.hero {
-  position: relative;
-  height: calc(100vh - 30px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--pattern);
-  margin-bottom: 3rem;
-  overflow: hidden;
-}
-
 .oval1, .oval2 {
   position: absolute;
   border-radius: 50%;

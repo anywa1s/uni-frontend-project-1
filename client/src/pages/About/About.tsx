@@ -1,13 +1,14 @@
 import React from 'react';
-import styles from './About.module.css';
 import teamImg from '../../assets/about_team.jpg';
 import productsImg from '../../assets/about_products.jpg';
 import helpImg from '../../assets/about_help.jpg';
+import styles from './About.module.css';
+import bgStyles from '../../ui/bgpattern.module.css'
 
 const About: React.FC = () => {
   return (
     <div className={styles.container}>
-      <div className={styles.hero}>
+      <div className={`${bgStyles.bgpattern} ${bgStyles.bgpatternA}`}>
         <div className={styles.oval1}></div>
         <div className={styles.oval2}></div>
         <h1 className={styles.title}>{`с Вашего позволения, \n`} <span className="accent">представимся</span></h1>

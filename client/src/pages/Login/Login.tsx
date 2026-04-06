@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { loginUser } from '../../store/slices/authSlice';
 import styles from './Login.module.css';
+import bgStyles from '../../ui/bgpattern.module.css'
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -24,7 +25,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={`${bgStyles.bgpattern} ${bgStyles.bgpatternB}`}>
       <div className={styles.card}>
         <h2 className={styles.title}>ВХОД</h2>
               

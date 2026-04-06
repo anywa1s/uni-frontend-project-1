@@ -1,4 +1,4 @@
-.checkbox-container {
+.checkboxContainer {
   display: inline-block;
   position: relative;
   padding-left: 35px;
@@ -8,7 +8,7 @@
   user-select: none;
 }
 
-.custom-checkbox {
+.customCheckbox {
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -42,12 +42,12 @@
   transform: rotate(45deg);
 }
 
-.custom-checkbox:checked ~ .checkmark {
+.customCheckbox:checked ~ .checkmark {
   background-color: var(--accent);
   /* box-shadow: 0 3px 7px rgba(33, 150, 243, 0.3); */
 }
 
-.custom-checkbox:checked ~ .checkmark:after {
+.customCheckbox:checked ~ .checkmark:after {
   display: block;
 }
 
@@ -61,6 +61,6 @@
   }
 }
 
-.custom-checkbox:checked ~ .checkmark:after {
+.customCheckbox:checked ~ .checkmark:after {
   animation: checkAnim 0.2s forwards;
 }

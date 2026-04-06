@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
-import { products } from '../../data/products';
+import { useDispatch, useSelector } from 'react-redux';
 import ProductCard from '../../components/ProductCard/ProductCard';
+import { addToCart } from '../../store/slices/cartSlice';
+import { RootState } from '../../store/store';
 import { ReactComponent as FilterIcon } from '../../assets/icons/filter_icon.svg';
 import styles from './Catalog.module.css';
-import '../../ui/checkbox.css';
+import checkboxStyles from '../../ui/checkbox.module.css';
 
 const Catalog: React.FC = () => {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [sortOption, setSortOption] = useState('default');
+  
+  const dispatch = useDispatch();
+  const products = useSelector((state: RootState) => state.product.items);
 
   const handleAddToCart = (productId: number) => {
     const product = products.find(p => p.id === productId);
     if (product) {
-      console.log('Добавлен товар:', product.name);
+      dispatch(addToCart(product));
     }
   };
 
@@ -48,25 +53,20 @@ const Catalog: React.FC = () => {
           <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
             <h2>Фильтры</h2>
             <div className={styles.filterGroup}>
-              <label className="checkbox-container">
-                <input type="checkbox" className="custom-checkbox" />
-                <span className="checkmark"></span>
+              <label className={checkboxStyles.checkboxContainer}>
+                <input type="checkbox" className={checkboxStyles.customCheckbox} />
+                <span className={checkboxStyles.checkmark}></span>
                 Обувь
               </label>
-              <label className="checkbox-container">
-                <input type="checkbox" className="custom-checkbox" />
-                <span className="checkmark"></span>
+              <label className={checkboxStyles.checkboxContainer}>
+                <input type="checkbox" className={checkboxStyles.customCheckbox} />
+                <span className={checkboxStyles.checkmark}></span>
                 Одежда
               </label>
-              <label className="checkbox-container">
-                <input type="checkbox" className="custom-checkbox" />
-                <span className="checkmark"></span>
-                Аксессуары
-              </label>
-              <label className="checkbox-container">
-                <input type="checkbox" className="custom-checkbox" />
-                <span className="checkmark"></span>
-                Спорт
+              <label className={checkboxStyles.checkboxContainer}>
+                <input type="checkbox" className={checkboxStyles.customCheckbox} />
+                <span className={checkboxStyles.checkmark}></span>
+                Акссесуары
               </label>
             </div>
             <button className={styles.applyButton} onClick={closeFilterModal}>
