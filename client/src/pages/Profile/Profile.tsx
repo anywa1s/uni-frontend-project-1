@@ -1,6 +1,6 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
-import { Link, Navigate } from 'react-router-dom';
 import styles from './Profile.module.css';
 
 const Profile: React.FC = () => {
@@ -9,14 +9,9 @@ const Profile: React.FC = () => {
   if (!isInitialized) {
     return <div>Загрузка профиля...</div>;
   }
-  
+
   if (!user) {
-    return (
-      <div className={styles.container}>
-        <h2>Пожалуйста, войдите в аккаунт</h2>
-        <Link to="/login">Перейти ко входу</Link>
-      </div>
-    );
+    return <Navigate to="/login" replace />;
   }
 
   return (
