@@ -1,10 +1,14 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useAppDispatch, useAppSelector} from './store/hooks';
-import { checkAuth, setInitialized } from './store/slices/authSlice';
+import { useAppDispatch } from './store/hooks';
+
+import { checkAuth } from './store/slices/authSlice';
+import { AuthWrapper } from './wrappers/AuthWrapper';
+import { CommonWrapper } from './wrappers/CommonWrapper';
+
 import { Header } from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import ErrorModal from './components/ErrorModal/ErrorModal';
+
 import Home from './pages/Home/Home';
 import Catalog from './pages/Catalog/Catalog';
 import About from './pages/About/About';
@@ -18,42 +22,52 @@ import NotFound from './pages/NotFound/NotFound';
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { isInitialized } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      dispatch(checkAuth());
-    } else {
-      dispatch(setInitialized()); 
-    }
+    dispatch(checkAuth());
   }, [dispatch]);
-
-  if (!isInitialized && localStorage.getItem('token')) {
-    return <div>Загрузка...</div>; 
-  }
-
+  
   return (
     <BrowserRouter>
-      <ErrorModal />
-      <Header />
-      <main className="main-content">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/catalog" element={<Catalog />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/help" element={<Help />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/order" element={<Order />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-      <Footer />
+      <CommonWrapper>
+        <Header />
+
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/catalog" element={<Catalog />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/help" element={<Help />} />
+            <Route path="/cart" element={<Cart />} />
+
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+
+            <Route
+              path="/order"
+              element={
+                <AuthWrapper>
+                  <Order />
+                </AuthWrapper>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <AuthWrapper>
+                  <Profile />
+                </AuthWrapper>
+              }
+            />
+
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+
+        <Footer />
+      </CommonWrapper>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

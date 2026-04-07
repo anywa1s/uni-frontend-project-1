@@ -90,7 +90,7 @@ const Order: React.FC = () => {
           </div>
           
           <button type="submit" className={styles.button} disabled={isLoading}>
-            {isLoading ? 'СОЗДАНИЕ...' : 'СОЗДАТЬ АККАУНТ'}
+            {isLoading ? 'ОФОРМЛЕНИЕ...' : 'ОФОРМИТЬ'}
           </button>
         </form>
       </div>
