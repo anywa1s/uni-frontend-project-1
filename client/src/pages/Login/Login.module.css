@@ -1,6 +1,6 @@
 .card {
   background: white;
-  border-radius: 10px;
+  border-radius: var(--radius-form);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   padding: 2.5rem;
   width: 100%;
@@ -8,10 +8,10 @@
 }
 
 .title {
+  font-size: var(--font-size-subhead);
   text-align: center;
   margin-bottom: 2rem;
   color: var(--text-dark);
-  font-size: 2rem;
 }
 
 .form {
@@ -27,15 +27,16 @@
 }
 
 .inputGroup label {
-  font-weight: 500;
+  font-size: var(--font-size-input);
+  font-weight: var(--font-weight-slim);
   color: var(--text-light);
 }
 
 .inputGroup input {
   padding: 0.75rem;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 1rem;
+  border-radius: var(--radius-input);
+  font-size: var(--font-size-input);
   transition: border-color 0.2s;
 }
 
@@ -48,12 +49,12 @@
   background: var(--accent);
   color: white;
   border: none;
-  padding: 0.75rem;
-  border-radius: 5px;
-  font-size: 1.05rem;
-  font-weight: 780;
+  padding: 1rem;
+  border-radius: var(--radius-button);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
-  transition: background 0.2s;
+  margin-top: 1.5rem;
 }
 
 .button:hover {
@@ -64,12 +65,13 @@
   text-align: center;
   margin-top: 1.5rem;
   color: var(--text-light);
+  font-weight: var(--font-weight-slim);
 }
 
 .registerLink a {
   color: var(--accent);
   text-decoration: none;
-  font-weight: 780;
+  font-weight: var(--font-weight-bold);
 }
 
 .registerLink a:hover {

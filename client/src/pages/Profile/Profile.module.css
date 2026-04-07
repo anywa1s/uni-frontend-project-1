@@ -9,7 +9,7 @@
 }
 
 .title {
-  font-size: 3rem;
+  font-size: var(--font-size-head);
   color: var(--text-dark);
-  font-weight: 780;
+  font-weight: var(--font-weight-bold);
 }

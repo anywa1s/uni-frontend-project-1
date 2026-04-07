@@ -1,6 +1,8 @@
 .container {
   max-width: 1200px;
-  margin: 3rem auto;
+  height: 100vh;
+  margin-top: 3rem;
+  margin-left: 2rem;
   padding: 0 1rem;
 }
 
@@ -17,8 +19,8 @@
   text-align: left;
   background: none;
   border: none;
-  font-size: 1.4rem;
-  font-weight: 680;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-base);
   color: var(--text-dark);
   cursor: pointer;
   padding: 0.5rem 0;
@@ -30,8 +32,8 @@
 }
 
 .icon {
-  font-size: 1.3rem;
-  font-weight: 780;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
   color: var(--accent);
   width: 1rem;
   flex-shrink: 0;
@@ -43,7 +45,7 @@
 
 .answer {
   margin-top: 0.5rem;
-  font-size: 1.1rem;
+  font-size: var(--font-size-input);
   padding-left: 1.75rem;
   margin-bottom: 1rem;
   line-height: 1.5;

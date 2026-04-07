@@ -18,8 +18,8 @@
   text-align: left;
   background: none;
   border: none;
-  font-size: 1.4rem;
-  font-weight: 780;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
   color: var(--text-dark);
   cursor: pointer;
   padding: 0.5rem 0;
@@ -31,8 +31,8 @@
 }
 
 .filterIcon {
-  width: 28px;
-  height: 28px;
+  width: 25px;
+  height: 25px;
   fill: var(--text-dark);
 }
 
@@ -58,12 +58,15 @@
 .modalContent {
   background: white;
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: var(--radius-form);
   min-width: 300px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 .modalContent h2 {
+  text-align: center;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
   margin-top: 0;
   margin-bottom: 1rem;
 }
@@ -80,6 +83,9 @@
 .filterGroup label {
   display: flex;
   align-items: center;
+  font-size: var(--font-size-input);
+  font-weight: var(--font-weight-slim);
+  color: var(--text-dark);
   gap: 0.5rem;
 }
 
@@ -87,12 +93,15 @@
   background: var(--accent);
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-button);
+  font-size: var(--font-size-input);
+  font-weight: var(--font-weight-base);
+  transition: background 0.2s;
   cursor: pointer;
   width: 100%;
 }
 
 .applyButton:hover {
-  background: var(accent-dark);
+  background: var(--accent-dark);
 }

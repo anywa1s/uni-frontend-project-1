@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { RootState } from '../../store/store';
 import { updateQuantity, removeFromCart } from '../../store/slices/cartSlice';
@@ -28,7 +28,7 @@ const Cart: React.FC = () => {
     return (
       <div className={styles.container}>
         {/* <h1 className={styles.title}>КОРЗИНА</h1> */}
-        <p className={styles.empty}>Ваша корзина пуста</p>
+        <p className={styles.empty}>Тут пока пусто... давай это <Link to="/catalog" className={styles.link}>исправим</Link></p>
       </div>
     );
   }
@@ -72,11 +72,11 @@ const Cart: React.FC = () => {
       </div>
       <div className={styles.summary}>
         <div className={styles.total}>
-          <span>Итого:</span>
+          <span>ИТОГО:</span>
           <span>{totalSum} ₽</span>
         </div>
         <button className={styles.checkoutBtn} onClick={handleCheckout => navigate('/order')}>
-          Оформить заказ
+          ОФОРМИТЬ ЗАКАЗ
         </button>
       </div>
       </div>

@@ -5,9 +5,9 @@
   border-radius: 15px;
   height: 56px;
   position: relative;
-  color: var(--text-primary, #1f2937);
-  font-size: 1rem;
-  font-weight: 600;
+  color: var(--text-dark);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-base);
   font-family: var(--font-family, inherit);
   cursor: pointer;
   border: none;

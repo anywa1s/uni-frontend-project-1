@@ -1,4 +1,5 @@
 :root {
+  /* цвета */
   --accent: #ff7e5e;
   --accent-dark: #e65c3a;
   --accent-light: #ffa07a;
@@ -6,6 +7,21 @@
   --text-light: #666;
   --bg-light: #f9f9f9;
   
+  /* шрифты размеры */
+  --font-size-input: 1rem;
+  --font-size-base: 1.3rem;
+  --font-size-subhead: 2rem;
+  --font-size-head: 3rem;
+
+  /* шрифты толщина */
+  --font-weight-slim: 500;
+  --font-weight-base: 650;
+  --font-weight-bold: 750;
+
+  /* форма радиусы */
+  --radius-form: 10px;
+  --radius-button: 10px;
+  --radius-input: 5px;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');

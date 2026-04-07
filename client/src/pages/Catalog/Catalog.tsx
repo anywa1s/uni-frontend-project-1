@@ -51,7 +51,7 @@ const Catalog: React.FC = () => {
       {isFilterModalOpen && (
         <div className={styles.modalOverlay} onClick={closeFilterModal}>
           <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
-            <h2>Фильтры</h2>
+            <h2>ФИЛЬТРЫ</h2>
             <div className={styles.filterGroup}>
               <label className={checkboxStyles.checkboxContainer}>
                 <input type="checkbox" className={checkboxStyles.customCheckbox} />
@@ -70,7 +70,7 @@ const Catalog: React.FC = () => {
               </label>
             </div>
             <button className={styles.applyButton} onClick={closeFilterModal}>
-              Применить
+              ПРИМЕНИТЬ
             </button>
           </div>
         </div>

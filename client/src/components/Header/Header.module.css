@@ -10,7 +10,7 @@
 
 .logo a {
   font-size: 1.5rem;
-  font-weight: 780;
+  font-weight: var(--font-weight-bold);
   color: var(--text-dark);
   text-decoration: none;
   margin-right: 6rem;
@@ -24,8 +24,8 @@
 .nav a {
   color: var(--text-dark);
   text-decoration: none;
-  font-size: 1.3rem;
-  font-weight: 780;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
   transition: color 0.2s;
 }
 

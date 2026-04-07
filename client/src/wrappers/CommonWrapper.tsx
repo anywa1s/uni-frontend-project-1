@@ -7,7 +7,6 @@ interface CommonWrapperProps {
 }
 
 export const CommonWrapper: React.FC<CommonWrapperProps> = ({ children }) => {
-  const dispatch = useAppDispatch();
   const { isLoading } = useAppSelector((state) => state.settings);
 
   return (
