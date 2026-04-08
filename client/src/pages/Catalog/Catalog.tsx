@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { addToCart } from '../../store/slices/cartSlice';
 import { RootState } from '../../store/store';
-import { ReactComponent as FilterIcon } from '../../assets/icons/filter_icon.svg';
+import { ReactComponent as FilterIcon } from '../../assets/icons/filter_icon_2.svg';
 import styles from './Catalog.module.css';
 import checkboxStyles from '../../ui/checkbox.module.css';
 
@@ -30,7 +30,7 @@ const Catalog: React.FC = () => {
         <div className={styles.header}>
           <button className={styles.filterButton} onClick={openFilterModal}>
             <FilterIcon className={styles.filterIcon} />
-            ФИЛЬТР
+            {/* ФИЛЬТР */}
           </button>
         </div>
 

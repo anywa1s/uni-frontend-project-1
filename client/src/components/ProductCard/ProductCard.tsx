@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as CartIcon } from '../../assets/icons/cart_icon.svg';
+import { ReactComponent as CartIcon } from '../../assets/icons/cart_icon_2.svg';
 import styles from './ProductCard.module.css';
 
 export interface ProductCardProps {

@@ -27,13 +27,14 @@
 }
 
 .filterButton:hover {
-  color: var(--accent-dark)
+  color: var(--accent-dark);
+  transform: scale(1.3);
 }
 
 .filterIcon {
-  width: 25px;
-  height: 25px;
-  fill: var(--text-dark);
+  width:30px;
+  height: 30px;
+  /* fill: var(--text-dark); */
 }
 
 .productGrid {
