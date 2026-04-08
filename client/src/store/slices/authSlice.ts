@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthService } from '../../api/authService';
+import { UserService } from '../../api/userService';
 import { User, LoginDTO, RegisterDTO } from '../../types/auth';
 import { getErrorMessage } from '../../types/error';
 import { setLoading, showError } from './settingsSlice';
@@ -75,6 +76,66 @@ export const checkAuth = createAsyncThunk(
   }
 );
 
+export const updateUserData = createAsyncThunk(
+  'auth/updateProfile',
+  async (data: Partial<User>, { dispatch, rejectWithValue }) => {
+    try {
+      dispatch(setLoading(true));
+      const updated = await UserService.updateFullProfile(data);
+      dispatch(showError(''));
+      return updated;
+    }
+    catch (err: unknown) {
+      const message = getErrorMessage(err);
+      dispatch(showError(message));
+      return rejectWithValue(message);
+    }
+    finally {
+      dispatch(setLoading(false));
+    }
+  }
+);
+
+export const updateUserName = createAsyncThunk(
+  'auth/updateName',
+  async (name: string, { dispatch, rejectWithValue }) => {
+    try {
+      dispatch(setLoading(true));
+      const updated = await UserService.updateName(name);
+      dispatch(showError(''));
+      return updated;
+    }
+    catch (err: unknown) {
+      const message = getErrorMessage(err);
+      dispatch(showError(message));
+      return rejectWithValue(message);
+    }
+    finally {
+      dispatch(setLoading(false));
+    }
+  }
+);
+
+export const deleteUserAccount = createAsyncThunk(
+  'auth/deleteAccount',
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      dispatch(setLoading(true));
+      await UserService.deleteAccount();
+      localStorage.removeItem('token');
+      return null;
+    }
+    catch (err: unknown) {
+      const message = getErrorMessage(err);
+      dispatch(showError(message));
+      return rejectWithValue(message);
+    }
+    finally {
+      dispatch(setLoading(false));
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -103,6 +164,21 @@ const authSlice = createSlice({
         state.isInitialized = true;
       })
       .addCase(checkAuth.rejected, (state) => {
+        state.user = null;
+        state.token = null;
+        state.isInitialized = true;
+      })
+      .addCase(updateUserData.fulfilled, (state, action) => {
+        if (state.user) {
+          state.user = { ...state.user, ...action.payload };
+        }
+      })
+      .addCase(updateUserName.fulfilled, (state, action) => {
+        if (state.user) {
+          state.user = { ...state.user, ...action.payload };
+        }
+      })
+      .addCase(deleteUserAccount.fulfilled, (state) => {
         state.user = null;
         state.token = null;
         state.isInitialized = true;
