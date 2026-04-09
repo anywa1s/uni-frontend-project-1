@@ -5,6 +5,8 @@ import styles from './Profile.module.css';
 import { ReactComponent as LogoutIcon } from '../../assets/icons/logout_icon.svg';
 import { ReactComponent as EditIcon } from '../../assets/icons/edit_icon.svg';
 import { ReactComponent as HistoryIcon } from '../../assets/icons/history_icon.svg';
+import { ReactComponent as SaveIcon } from '../../assets/icons/save_icon.svg';
+import { ReactComponent as UndoIcon } from '../../assets/icons/undo_icon.svg';
 
 const Profile: React.FC = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -44,7 +46,6 @@ const Profile: React.FC = () => {
       email: formData.email,
     };
 
-    // Отправляем пароль только если он не пустой
     if (formData.password) {
       updatePayload.password = formData.password;
     }
@@ -79,7 +80,7 @@ const Profile: React.FC = () => {
         {!isEditing ? (
           <h1>Рады тебя видеть, <span className='accent'>{user?.name}</span>!</h1>
         ) : (
-          <div className={styles.editingHeader}>
+          <div className={styles.editingForm}>
             <div className={styles.formGroup}>
               <label htmlFor="name">Имя</label>
               <input
@@ -91,47 +92,44 @@ const Profile: React.FC = () => {
                 className={styles.input}
               />
             </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className={styles.input}
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="password">Новый пароль</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                className={styles.input}
+                placeholder="Оставить пусто, чтобы не менять"
+              />
+            </div>
+
+            <div className={styles.buttonGroup}>
+              <button className={styles.saveButton} onClick={handleSave}>
+                <SaveIcon className={styles.saveIcon} />
+              </button>
+
+              <button className={styles.undoButton} onClick={handleCancel}>
+                <UndoIcon className={styles.undoIcon} />
+              </button>
+            </div>
           </div>
         )}
       </div>
-
-      {isEditing && (
-        <div className={styles.editingForm}>
-          <div className={styles.formGroup}>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className={styles.input}
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="password">Новый пароль</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              className={styles.input}
-              placeholder="Оставить пусто, чтобы не менять"
-            />
-          </div>
-
-          <div className={styles.buttonGroup}>
-            <button className={styles.saveButton} onClick={handleSave}>
-              Сохранить
-            </button>
-            <button className={styles.cancelButton} onClick={handleCancel}>
-              Отмена
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
