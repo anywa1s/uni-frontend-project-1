@@ -81,8 +81,8 @@ export const updateUserData = createAsyncThunk(
   async (data: Partial<User>, { dispatch, rejectWithValue }) => {
     try {
       dispatch(setLoading(true));
-      const updated = await UserService.updateFullProfile(data);
       dispatch(showError(''));
+      const updated = await UserService.updateFullProfile(data);
       return updated;
     }
     catch (err: unknown) {

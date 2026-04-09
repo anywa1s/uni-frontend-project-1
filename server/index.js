@@ -9,9 +9,34 @@ app.use(express.json());
 
 const users = [];
 
-// Маршрут для регистрации
+// middleware для проверки авторизации
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  
+  if (!authHeader) {
+    return res.status(401).json({ message: 'Не авторизован' });
+  }
+
+  const token = authHeader.split(' ')[1];
+  const userId = token.split('-').pop();
+
+  const user = users.find(u => u.id == userId);
+
+  if (!user) {
+    return res.status(401).json({ message: 'Пользователь не найден' });
+  }
+
+  req.user = user;
+  next();
+};
+
+// маршрут для регистрации
 app.post('/api/auth/register', (req, res) => {
   const { email, password, name } = req.body;
+
+  if (!email || !password || !name) {
+    return res.status(400).json({ message: 'Все поля обязательны' });
+  }
 
   const userExists = users.find(u => u.email === email);
   if (userExists) {
@@ -29,9 +54,14 @@ app.post('/api/auth/register', (req, res) => {
   });
 });
 
-// Маршрут для логина
+// маршрут для логина
 app.post('/api/auth/login', (req, res) => {
   const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ message: 'Email и пароль обязательны' });
+  }
+
   const user = users.find(u => u.email === email && u.password === password);
 
   if (!user) {
@@ -39,28 +69,88 @@ app.post('/api/auth/login', (req, res) => {
   }
 
   res.json({
-    user: { id: user.id, email: user.email, name: user.name },
+    user: { 
+      id: user.id, 
+      email: user.email, 
+      name: user.name 
+    },
     token: 'fake-jwt-token-' + user.id
   });
 });
 
-app.get('/api/auth/me', (req, res) => {
-  const authHeader = req.headers.authorization;
-  
-  if (!authHeader) {
-    return res.status(401).json({ message: 'Не авторизован' });
+// маршрут для получения текущего пользователя
+app.get('/api/auth/me', authenticateToken, (req, res) => {
+  res.json({ id: req.user.id, email: req.user.email, name: req.user.name });
+});
+
+// обновление имени пользователя
+app.patch('/api/user/name', authenticateToken, (req, res) => {
+  const { name } = req.body;
+
+  if (!name || name.trim() === '') {
+    return res.status(400).json({ message: 'Имя не может быть пустым' });
   }
 
-  const token = authHeader.split(' ')[1];
-  const userId = token.split('-').pop(); 
+  req.user.name = name;
 
-  const user = users.find(u => u.id == userId);
+  console.log('Имя пользователя обновлено:', req.user);
 
-  if (!user) {
-    return res.status(401).json({ message: 'Пользователь не найден' });
+  res.json({
+    id: req.user.id,
+    email: req.user.email,
+    name: req.user.name,
+    message: 'Имя успешно обновлено'
+  });
+});
+
+// обновление полного профиля
+app.put('/api/user/profile', authenticateToken, (req, res) => {
+  const { name, email, password } = req.body;
+
+  if (email && email !== req.user.email) {
+    const emailExists = users.find(u => u.email === email && u.id !== req.user.id);
+    if (emailExists) {
+      return res.status(400).json({ message: 'Email уже используется' });
+    }
+    req.user.email = email;
   }
 
-  res.json({ id: user.id, email: user.email, name: user.name });
+  if (name && name.trim() !== '') {
+    req.user.name = name;
+  }
+
+  if (password && password.trim() !== '') {
+    req.user.password = password;
+  }
+
+  console.log('Профиль пользователя обновлен:', req.user);
+
+  res.json({
+    id: req.user.id,
+    email: req.user.email,
+    name: req.user.name,
+    message: 'Профиль успешно обновлен'
+  });
+});
+
+// удаление аккаунта
+app.delete('/api/user/account', authenticateToken, (req, res) => {
+  const userIndex = users.findIndex(u => u.id === req.user.id);
+
+  if (userIndex === -1) {
+    return res.status(404).json({ message: 'Пользователь не найден' });
+  }
+
+  const deletedUser = users.splice(userIndex, 1);
+
+  console.log('Пользователь удален:', deletedUser[0]);
+
+  res.json({ message: 'Аккаунт успешно удален' });
+});
+
+// 404
+app.use((req, res) => {
+  res.status(404).json({ message: 'Маршрут не найден' });
 });
 
 app.listen(PORT, () => {

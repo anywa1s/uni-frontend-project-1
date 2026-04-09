@@ -15,3 +15,13 @@ apiClient.interceptors.request.use((config) => {
   }
   return config;
 });
+
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response) {
+      return Promise.reject(error);
+    }
+    return Promise.reject(error);
+  }
+);

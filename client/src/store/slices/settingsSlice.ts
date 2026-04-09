@@ -21,8 +21,14 @@ const settingsSlice = createSlice({
     },
 
     showError: (state, action: PayloadAction<string>) => {
-      state.errorMessage = action.payload;
-      state.isErrorModalOpen = true;
+      if (action.payload && action.payload.trim() !== '') {
+        state.errorMessage = action.payload;
+        state.isErrorModalOpen = true;
+      } 
+      else {
+        state.errorMessage = null;
+        state.isErrorModalOpen = false;
+      }
     },
 
     hideErrorModal: (state) => {
