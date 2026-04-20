@@ -22,6 +22,11 @@
   --radius-form: 10px;
   --radius-button: 10px;
   --radius-input: 5px;
+
+  /* размеры иконок */
+  --icon-size-s: 30px;
+  --icon-size-m: 35px;
+  --icon-size-xl: 100px;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
-import { updateUserData, logout } from '../../store/slices/authSlice';
+import { updateUserData, logout, deleteUserAccount } from '../../store/slices/authSlice';
 import styles from './Profile.module.css';
 import { ReactComponent as LogoutIcon } from '../../assets/icons/logout_icon.svg';
 import { ReactComponent as EditIcon } from '../../assets/icons/edit_icon.svg';
 import { ReactComponent as HistoryIcon } from '../../assets/icons/history_icon.svg';
 import { ReactComponent as SaveIcon } from '../../assets/icons/save_icon.svg';
+import { ReactComponent as EraseIcon } from '../../assets/icons/erase_icon.svg';
 import { ReactComponent as UndoIcon } from '../../assets/icons/undo_icon.svg';
 
 const Profile: React.FC = () => {
@@ -53,6 +54,11 @@ const Profile: React.FC = () => {
     await dispatch(updateUserData(updatePayload));
     setIsEditing(false);
   };
+
+  const handleDelete = async () => {
+    await dispatch(deleteUserAccount());
+    dispatch(logout());
+  }
 
   const handleLogout = () => {
     dispatch(logout());
@@ -121,6 +127,10 @@ const Profile: React.FC = () => {
             <div className={styles.buttonGroup}>
               <button className={styles.saveButton} onClick={handleSave}>
                 <SaveIcon className={styles.saveIcon} />
+              </button>
+
+              <button className={styles.deleteButton} onClick={handleDelete}>
+                <EraseIcon className={styles.deleteIcon} />
               </button>
 
               <button className={styles.undoButton} onClick={handleCancel}>

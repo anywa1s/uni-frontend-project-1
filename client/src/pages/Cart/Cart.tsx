@@ -5,6 +5,10 @@ import { RootState } from '../../store/store';
 import { updateQuantity, removeFromCart } from '../../store/slices/cartSlice';
 import styles from './Cart.module.css';
 import { selectCartTotal } from '../../store/selectors/cartSelector';
+import { ReactComponent as SadIcon } from '../../assets/icons/sad_icon.svg';
+import { ReactComponent as RemoveIcon } from '../../assets/icons/remove_icon.svg';
+import { ReactComponent as SubIcon } from '../../assets/icons/sub_icon.svg';
+import { ReactComponent as AddIcon } from '../../assets/icons/add_icon.svg';
 
 const Cart: React.FC = () => {
   const navigate = useNavigate();
@@ -21,14 +25,12 @@ const Cart: React.FC = () => {
     dispatch(removeFromCart(id));
   };
 
-  const handleCheckout = () => {
-  };
-
   if (cartItems.length === 0) {
     return (
-      <div className={styles.container}>
+      <div className={styles.empty}>
         {/* <h1 className={styles.title}>КОРЗИНА</h1> */}
-        <p className={styles.empty}>Тут пока пусто... давай это <Link to="/catalog" className={styles.link}>исправим</Link></p>
+        <SadIcon className={styles.sadIcon} />
+        <p>тут пока пусто... давай это <Link to="/catalog" className={styles.link}>исправим</Link></p>
       </div>
     );
   }
@@ -50,22 +52,22 @@ const Cart: React.FC = () => {
                 className={styles.qtyBtn}
                 onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
               >
-                -
+                <SubIcon className={styles.qtyIcon} />
               </button>
               <span className={styles.qtyValue}>{item.quantity}</span>
               <button
                 className={styles.qtyBtn}
                 onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
               >
-                +
+                <AddIcon className={styles.qtyIcon} />
               </button>
             </div>
             <div className={styles.itemTotal}>{item.price * item.quantity} ₽</div>
             <button
-              className={styles.removeBtn}
+              className={styles.removeButton}
               onClick={() => handleRemove(item.id)}
             >
-              Удалить
+              <RemoveIcon className={styles.removeIcon} />
             </button>
           </div>
         ))}
