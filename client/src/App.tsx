@@ -1,8 +1,6 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useAppDispatch } from './store/hooks';
 
-import { checkAuth } from './store/slices/authSlice';
 import { AuthWrapper } from './wrappers/AuthWrapper';
 import { CommonWrapper } from './wrappers/CommonWrapper';
 
@@ -21,47 +19,26 @@ import Profile from './pages/Profile/Profile';
 import NotFound from './pages/NotFound/NotFound';
 
 const App: React.FC = () => {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(checkAuth());
-  }, [dispatch]);
-  
   return (
     <BrowserRouter>
       <CommonWrapper>
         <Header />
 
         <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/catalog" element={<Catalog />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/help" element={<Help />} />
-            <Route path="/cart" element={<Cart />} />
-
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-
-            <Route
-              path="/order"
-              element={
-                <AuthWrapper>
-                  <Order />
-                </AuthWrapper>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <AuthWrapper>
-                  <Profile />
-                </AuthWrapper>
-              }
-            />
-
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AuthWrapper> 
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/catalog" element={<Catalog />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/help" element={<Help />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/order" element={<Order />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </AuthWrapper>
         </main>
 
         <Footer />
