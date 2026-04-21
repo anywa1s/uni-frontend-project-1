@@ -64,8 +64,6 @@ const Profile: React.FC = () => {
     dispatch(logout());
   };
 
-  /* ПОПРАВИТЬ ЭТО ВСЁ */
-
   return (
     <div className={styles.container}>
       <button className={styles.historyButton}>

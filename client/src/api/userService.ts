@@ -1,13 +1,14 @@
 import { apiClient } from './index';
+import type { User } from '../types/auth';
 
 export const UserService = {
-  async updateName(name: string) {
-    const response = await apiClient.patch('/user/name', { name });
+  async updateName(name: string): Promise<User> {
+    const response = await apiClient.patch<User>('/user/name', name);
     return response.data;
   },
 
-  async updateFullProfile(data: any) {
-    const response = await apiClient.put('/user/profile', data);
+  async updateFullProfile(data: Partial<User>): Promise<User> {
+    const response = await apiClient.put<User>('/user/profile', data);
     return response.data;
   },
 
