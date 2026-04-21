@@ -17,7 +17,6 @@ const initialState: OrderState = {
   currentOrder: null,
 };
 
-// создание заказа
 export const createOrder = createAsyncThunk(
   'orders/create',
   async (data: CreateOrderDTO, { dispatch, rejectWithValue }) => {
@@ -41,7 +40,6 @@ export const createOrder = createAsyncThunk(
   }
 );
 
-// получение истории заказов
 export const fetchUserOrders = createAsyncThunk(
   'orders/fetchUserOrders',
   async (_, { dispatch, rejectWithValue }) => {
@@ -61,7 +59,6 @@ export const fetchUserOrders = createAsyncThunk(
   }
 );
 
-// получение заказа по id
 export const fetchOrderById = createAsyncThunk(
   'orders/fetchById',
   async (id: string, { dispatch, rejectWithValue }) => {
