@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { useAppSelector } from '../store/hooks';
 import ErrorModal from '../components/ErrorModal/ErrorModal';
 
 interface CommonWrapperProps {

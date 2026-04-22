@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
-import { updateUserData, logout, deleteUserAccount } from '../../store/slices/authSlice';
+import { updateUserData, updateUserName, logout, deleteUserAccount } from '../../store/slices/authSlice';
 import styles from './Profile.module.css';
 import { ReactComponent as LogoutIcon } from '../../assets/icons/logout_icon.svg';
 import { ReactComponent as EditIcon } from '../../assets/icons/edit_icon.svg';
@@ -42,16 +42,25 @@ const Profile: React.FC = () => {
   };
 
   const handleSave = async () => {
-    const updatePayload: any = {
-      name: formData.name,
-      email: formData.email,
-    };
+    const nameChanged = formData.name !== user?.name;
+    const emailChanged = formData.email !== user?.email;
+    const passwordChanged = formData.password.trim() !== '';
 
-    if (formData.password) {
-      updatePayload.password = formData.password;
+    if (nameChanged && !emailChanged && !passwordChanged) {
+      await dispatch(updateUserName(formData.name));
+    } else {
+      const updatePayload: any = {
+        name: formData.name,
+        email: formData.email,
+      };
+
+      if (formData.password) {
+        updatePayload.password = formData.password;
+      }
+
+      await dispatch(updateUserData(updatePayload));
     }
-
-    await dispatch(updateUserData(updatePayload));
+    
     setIsEditing(false);
   };
 

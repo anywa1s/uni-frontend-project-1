@@ -101,8 +101,8 @@ export const updateUserName = createAsyncThunk(
   async (name: string, { dispatch, rejectWithValue }) => {
     try {
       dispatch(setLoading(true));
-      const updated = await UserService.updateName(name);
       dispatch(showError(''));
+      const updated = await UserService.updateName(name);
       return updated;
     }
     catch (err: unknown) {

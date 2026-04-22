@@ -3,7 +3,7 @@ import type { User } from '../types/auth';
 
 export const UserService = {
   async updateName(name: string): Promise<User> {
-    const response = await apiClient.patch<User>('/user/name', name);
+    const response = await apiClient.patch<User>('/user/name', { name });
     return response.data;
   },
 
