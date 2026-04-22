@@ -50,7 +50,8 @@ app.post('/api/auth/register', (req, res) => {
 
   res.status(201).json({
     user: { id: newUser.id, email: newUser.email, name: newUser.name },
-    token: 'fake-jwt-token-' + newUser.id
+    token: 'fake-jwt-token-' + newUser.id,
+    refreshToken: 'fake-refresh-token-' + newUser.id
   });
 });
 
@@ -74,7 +75,35 @@ app.post('/api/auth/login', (req, res) => {
       email: user.email, 
       name: user.name 
     },
-    token: 'fake-jwt-token-' + user.id
+    token: 'fake-jwt-token-' + user.id,
+    refreshToken: 'fake-refresh-token-' + user.id
+  });
+});
+
+// маршрут для обновления токена
+app.post('/api/auth/refresh', (req, res) => {
+  const { refreshToken } = req.body;
+
+  if (!refreshToken) {
+    return res.status(400).json({ message: 'Refresh token обязателен' });
+  }
+
+  // Проверяем refreshToken и извлекаем userId
+  const userId = refreshToken.split('-').pop();
+  const user = users.find(u => u.id == userId);
+
+  if (!user) {
+    return res.status(401).json({ message: 'Invalid refresh token' });
+  }
+
+  // Генерируем новые tokens
+  const newToken = 'fake-jwt-token-' + user.id;
+  const newRefreshToken = 'fake-refresh-token-' + user.id;
+
+  res.json({
+    token: newToken,
+    refreshToken: newRefreshToken,
+    user: { id: user.id, email: user.email, name: user.name }
   });
 });
 

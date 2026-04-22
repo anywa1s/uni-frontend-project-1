@@ -61,12 +61,19 @@ export const checkAuth = createAsyncThunk(
   'auth/check',
   async (_, { dispatch, rejectWithValue }) => {
     try {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        return rejectWithValue('No token');
+      }
+
       dispatch(setLoading(true));
       const user = await AuthService.getMe();
       return user;
     } 
     catch (err: unknown) {
       localStorage.removeItem('token');
+      localStorage.removeItem('refreshToken');
       const message = getErrorMessage(err); 
       return rejectWithValue(message);
     } 
