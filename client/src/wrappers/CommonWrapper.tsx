@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAppSelector } from '../store/hooks';
 import ErrorModal from '../components/ErrorModal/ErrorModal';
+import styles from './CommonWrapper.module.css';
 
 interface CommonWrapperProps {
   children: React.ReactNode;
@@ -14,8 +15,8 @@ export const CommonWrapper: React.FC<CommonWrapperProps> = ({ children }) => {
       {children}
 
       {isLoading && (
-        <div className="global-loader">
-          <div className="loader">Загрузка...</div>
+        <div className={styles.globalLoader}>
+          <div className={styles.loader}>Загрузка...</div>
         </div>
       )}
 
