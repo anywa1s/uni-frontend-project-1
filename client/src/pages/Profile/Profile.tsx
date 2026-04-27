@@ -56,22 +56,29 @@ const Profile: React.FC = () => {
     const emailChanged = formData.email !== user?.email;
     const passwordChanged = formData.password.trim() !== '';
 
+    let result;
     if (nameChanged && !emailChanged && !passwordChanged) {
-      await dispatch(updateUserName(formData.name));
+      result = await dispatch(updateUserName(formData.name));
     } else {
       const updatePayload: any = {
         name: formData.name,
         email: formData.email,
       };
-
       if (formData.password) {
         updatePayload.password = formData.password;
       }
-
-      await dispatch(updateUserData(updatePayload));
+      result = await dispatch(updateUserData(updatePayload));
     }
     
-    setIsEditing(false);
+    if (result.meta.requestStatus === 'fulfilled') {
+      setIsEditing(false);
+    } else {
+      setFormData({
+        name: user?.name || '',
+        email: user?.email || '',
+        password: '',
+      });
+    }
   };
 
   const handleDelete = async () => {
