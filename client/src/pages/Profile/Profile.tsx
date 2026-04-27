@@ -108,7 +108,9 @@ const Profile: React.FC = () => {
 
       <div className={styles.hero}>
         {!isEditing ? (
-          <h1 className={styles.header}>Рады тебя видеть, <span className='accent'>{user?.name}</span>!</h1>
+          <h1 className={styles.header}>
+            Рады тебя видеть, <span className='accent'>{user?.name}</span>!
+          </h1>
         ) : (
           <div className={styles.editingForm}>
             <div className={styles.formGroup}>
