@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { updateUserData, updateUserName, logout, deleteUserAccount } from '../../store/slices/authSlice';
 import styles from './Profile.module.css';
@@ -19,6 +19,16 @@ const Profile: React.FC = () => {
     email: user?.email || '',
     password: '',
   });
+
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        name: user.name || '',
+        email: user.email || '',
+        password: '',
+      });
+    }
+  }, [user]);
 
   const handleEditClick = () => {
     setIsEditing(true);
