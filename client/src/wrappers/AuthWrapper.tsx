@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
 import Login from '../pages/Login/Login';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
@@ -15,12 +15,14 @@ export const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const { token, isInitialized } = useAppSelector((state) => state.auth);
+  const checkAuthRef = useRef(false);
 
   const isProtected = ProtectedRoutes.includes(location.pathname);
   const isGuestRoute = GuestRoutes.includes(location.pathname);
 
   useEffect(() => {
-    if (!isInitialized) {
+    if (!isInitialized && !checkAuthRef.current) {
+      checkAuthRef.current = true;
       dispatch(checkAuth());
     }
   }, [isInitialized, dispatch]);
