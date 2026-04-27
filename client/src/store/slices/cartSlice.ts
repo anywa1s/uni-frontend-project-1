@@ -5,8 +5,17 @@ interface CartState {
   items: CartItem[];
 }
 
+const loadCartFromStorage = (): CartItem[] => {
+  try {
+    const savedCart = localStorage.getItem('cart');
+    return savedCart ? JSON.parse(savedCart) : [];
+  } catch (error) {
+    return [];
+  }
+};
+
 const initialState: CartState = {
-  items: [],
+  items: loadCartFromStorage(),
 };
 
 const cartSlice = createSlice({
@@ -20,9 +29,11 @@ const cartSlice = createSlice({
       } else {
         state.items.push({ ...action.payload, quantity: 1 });
       }
+      saveCartToStorage(state.items);
     },
     removeFromCart: (state, action: PayloadAction<number>) => {
       state.items = state.items.filter(item => item.id !== action.payload);
+      saveCartToStorage(state.items);
     },
     updateQuantity: (state, action: PayloadAction<{ id: number; quantity: number }>) => {
       const item = state.items.find(item => item.id === action.payload.id);
@@ -33,12 +44,21 @@ const cartSlice = createSlice({
           item.quantity = action.payload.quantity;
         }
       }
+      saveCartToStorage(state.items);
     },
     clearCart: (state) => {
       state.items = [];
+      saveCartToStorage(state.items);
     },
   },
 });
+
+const saveCartToStorage = (items: CartItem[]) => {
+  try {
+    localStorage.setItem('cart', JSON.stringify(items));
+  } catch (error) {
+  }
+};
 
 export const { addToCart, removeFromCart, updateQuantity, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
